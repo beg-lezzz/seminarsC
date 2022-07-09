@@ -1,9 +1,22 @@
-﻿string? inputline = Console.ReadLine();
+﻿Console.WriteLine("Введите первое число:");
+string? inputlineA = Console.ReadLine();
+Console.WriteLine("Введите второе число:");
+string? inputlineB = Console.ReadLine();
 
-if (inputline != null)
+
+
+if (inputlineA != null && inputlineB != null)
 {
-    int inputnumber = int.Parse(inputline);
-    // int outnumber = inputnumber * inputnumber;
-    int outnumber = (int)Math.Pow(inputnumber,2);
-    Console.WriteLine(outnumber);
+    int inputnumberA = int.Parse(inputlineA);
+    int inputnumberB = int.Parse(inputlineB);
+
+//    if ((int)Math.Pow(inputnumberB,2) == inputnumberA)
+    if ((int)Math.Sqrt(inputnumberA) == inputnumberB)
+    {
+        Console.WriteLine("Да");
+    }
+    else
+    {
+        Console.WriteLine("Нет");
+    }
 }

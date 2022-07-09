@@ -5,7 +5,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>SolutionTask002</RootNamespace>
+        <RootNamespace>SolutionTask001</RootNamespace>
     </PropertyGroup>
 
 </Project>
