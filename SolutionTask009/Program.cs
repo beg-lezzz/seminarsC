@@ -16,27 +16,33 @@
         max = secondNum;
     }
 
-    Console.Write("Максимальное число: " + max);
+    Console.WriteLine("Максимальное число: " + max);
 }
 
-// char[] number = new Random().Next(10, 100).ToString().ToCharArray();
-// int count = 0;
-// int max = -1;
-// string digit = "";
-//
-// while (count < number.Length - 1)
-// {
-//     if (number[count] > max)
-//     {
-//         max = number[count];
-//     }
-//     digit = digit + number[count];
-//     count++;
-// }
-//
-// Console.WriteLine(max + " " + digit);
-
 void variant2()
+{
+    char[] number = new Random().Next(10, 100).ToString().ToCharArray();
+    int count = 0;
+    int max = -1;
+    string digit = "";
+
+    while (count < number.Length)
+    {
+        int numberLine = ((int)number[count]) - 48;
+        if (numberLine > max)
+        {
+            max = numberLine;
+        }
+
+        digit = digit + number[count];
+        count++;
+    }
+    
+    Console.WriteLine("Число: " + digit);
+    Console.WriteLine("Максимальная цифра: " + max);
+}
+
+void variant3()
 {
     int number = new Random().Next(10, 100);
     Console.Write("The random number is: ");
@@ -55,3 +61,5 @@ void variant2()
 variant1();
 
 variant2();
+
+variant3();

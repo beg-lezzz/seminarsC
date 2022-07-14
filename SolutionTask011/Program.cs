@@ -4,8 +4,7 @@
     Console.WriteLine("Число:" + number);
     int numberFirstDigit = number/100;
     int numberThirdDigit = number%10;
-    int goalNumber = numberFirstDigit + numberThirdDigit;
-    Console.WriteLine("Число после удаления второй цифры: " + goalNumber); 
+    Console.WriteLine("Число после удаления второй цифры: " + numberFirstDigit + numberThirdDigit); 
 }
 
 void middleDigitCutter()
@@ -29,8 +28,9 @@ void middleDigitCutter2()
     int num2 = number % 10;
 
     Console.Write("The modified num is : ");
-    Console.Write(num1*10 + num2);        
+    Console.WriteLine(num1*10 + num2);        
 }
 
 middleDigitCutter();
 middleDigitCutter2();
+secondDel();

@@ -4,15 +4,17 @@
     string? firstLine = Console.ReadLine();
     int first = int.Parse(firstLine);
 
-
-    if (first%7 == 0 && first%23 == 0)
+    if (firstLine != null)
     {
-        Console.WriteLine("Кратное");
+        if (first % 7 == 0 && first % 23 == 0)
+        {
+            Console.WriteLine("Кратное");
+        }
+        else
+        {
+            Console.WriteLine("Не кратное");
+        }
     }
-    else
-    {
-        Console.WriteLine("Не кратное");
-    }    
 }
 
 findDiv();
