@@ -1,6 +1,7 @@
 ﻿Console.WriteLine("Enter the number:");
 string? firstLine = Console.ReadLine();
 bool answer = true;
+string? answerBig;
 
 bool nullCheck(string str)
 {
@@ -24,7 +25,7 @@ bool zeroCheck(string str)
 {
     char[] array = firstLine.ToString().ToCharArray();
     int firstDig = ((int)array[0]) - 48;
-    if (firstDig == 0)
+    if (firstDig == 0 && array.Length > 1)
     {
         answer = false;
     }
@@ -38,52 +39,66 @@ bool intCheck(string str)
     return isNum;
 }
 
-if (nullCheck(firstLine) == true)
+string? checker(string str)
 {
-    if (intCheck(firstLine))
+    if (nullCheck(firstLine) == true)
     {
-        if (threeDigitCheck(firstLine) == true)
+        if (intCheck(firstLine))
         {
             if (zeroCheck(firstLine) == true)
             {
-                int number = int.Parse(firstLine);
-                int count = 0;
-
-                while (number>0)
+                if (threeDigitCheck(firstLine) == true)
                 {
-                    var digit = number % 10;
-                    number /= 10;
-                    count++;
+                    answerBig = "ok";
                 }
-
-                int[] arrNumber = new int[count];
-
-                number = int.Parse(firstLine);
-                while(number > 0)
+                else
                 {
-                    arrNumber[count-1] = number % 10;
-                    number /= 10;
-                    count--;
+                    answerBig = "Введенное число содержит менее трёх цифр";
                 }
-
-                Console.WriteLine(arrNumber[2]);
             }
             else
             {
-                Console.WriteLine("Число не может начинаться с нуля");
+                answerBig = "Число не может начинаться с нуля";
             }
         }
         else
         {
-            Console.WriteLine("Введенное число содержит менее трёх цифр");
+            answerBig = "Вы ввели не число";
         }
     }
     else
     {
-        Console.WriteLine("Вы ввели не число");
+        answerBig = "Вы ничего не ввели";
     }
+
+    return answerBig;
+}
+
+if (checker(firstLine) == "ok")
+{
+    int number = int.Parse(firstLine);
+    int count = 0;
+
+    while (number>0)
+    {
+         var digit = number % 10;
+         number /= 10;
+         count++;
+    }
+
+    int[] arrNumber = new int[count];
+
+    number = int.Parse(firstLine);
+    while(number > 0)
+    {
+         arrNumber[count-1] = number % 10;
+         number /= 10;
+         count--;
+    }
+
+    Console.WriteLine(arrNumber[2]);
 }
 else
 {
-    Console.WriteLine("Вы ничего не ввели");;
+    Console.WriteLine(answerBig);
 }

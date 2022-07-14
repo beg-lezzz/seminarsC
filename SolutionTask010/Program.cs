@@ -1,6 +1,7 @@
 ﻿Console.Write("Введите трёхзначное число: ");
 string? firstLine = Console.ReadLine(); 
 bool answer = true;
+string? answerCheck;
 
 bool nullCheck(string str)
 {
@@ -24,7 +25,7 @@ bool zeroCheck(string str)
 {
     char[] array = firstLine.ToString().ToCharArray();
     int firstDig = ((int)array[0]) - 48;
-    if (firstDig == 0)
+    if (firstDig == 0 && array.Length > 2)
     {
         answer = false;
     }
@@ -38,33 +39,47 @@ bool intCheck(string str)
     return isNum;
 }
 
-if (nullCheck(firstLine) == true)
+string? checker(string str)
 {
-    if (intCheck(firstLine))
+    if (nullCheck(firstLine) == true)
     {
-        if (threeDigitCheck(firstLine) == true)
+        if (intCheck(firstLine))
         {
             if (zeroCheck(firstLine) == true)
             {
-                int secondDigit = int.Parse(firstLine);
-                Console.WriteLine(secondDigit);
+                if (threeDigitCheck(firstLine) == true)
+                {
+                    answerCheck = "ok";
+                }
+                else
+                {
+                    answerCheck = "Введенное число не трёхзначное";
+                }
             }
             else
             {
-                Console.WriteLine("Число не может начинаться с нуля");
+                answerCheck = "Число не может начинаться с нуля";
             }
         }
         else
         {
-            Console.WriteLine("Введенное число не трёхзначное");
+            answerCheck = "Вы ввели не число";
         }
     }
     else
     {
-        Console.WriteLine("Вы ввели не число");
+        answerCheck = "Вы ничего не ввели";
     }
+
+    return answerCheck;
+}
+
+if (checker(firstLine) == "ok")
+{ 
+    int secondDigit = int.Parse(firstLine)%100/10; 
+    Console.WriteLine(secondDigit);
 }
 else
 {
-    Console.WriteLine("Вы ничего не ввели");;
+    Console.WriteLine(answerCheck);
 }
