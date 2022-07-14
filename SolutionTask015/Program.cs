@@ -15,11 +15,11 @@ var weekDaysDict = new Dictionary<int, bool>()
 
 if (weekDaysDict[randomNum] == false)
 {
-    answer = "Рабочий";
+    answer = "Нет";
 }
 else
 {
-    answer = "Выходной";
+    answer = "Да";
 }
 
 Console.WriteLine("В словаре это - " + answer);
@@ -28,9 +28,9 @@ var weekDayVacations = new List<int>(){6,7};
 
 if (weekDayVacations.Contains(randomNum) == true)
 {
-    Console.WriteLine("В списке это - Выходной");
+    Console.WriteLine("В списке это - Да");
 }
 else
 {
-    Console.WriteLine("В списке это - Рабочий");
+    Console.WriteLine("В списке это - Нет");
 }
