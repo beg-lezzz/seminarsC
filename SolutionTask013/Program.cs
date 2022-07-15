@@ -1,8 +1,10 @@
-﻿Console.WriteLine("Enter the number:");
+﻿Console.Clear();
+Console.WriteLine("Enter the number:");
 string? firstLine = Console.ReadLine();
 bool answer = true;
 string? answerBig;
 
+// функция для проверки вводимых пользователем данных на пустоту и null
 bool nullCheck(string str)
 {
     if (str == null || str == "")
@@ -11,7 +13,8 @@ bool nullCheck(string str)
     }
     return answer;
 }
-    
+
+// функция для проверки вводимых пользователем данных на количество введенных символов
 bool threeDigitCheck(string str)
 {
     if (firstLine.Length < 3)
@@ -20,7 +23,8 @@ bool threeDigitCheck(string str)
     }
     return answer;
 }
-    
+
+// функция для проверки вводимых пользователем данных на наличие нуля в начале строки
 bool zeroCheck(string str)
 {
     char[] array = firstLine.ToString().ToCharArray();
@@ -32,6 +36,7 @@ bool zeroCheck(string str)
     return answer;
 }
 
+// функция для проверки вводимых пользователем данных на целое число
 bool intCheck(string str)
 {
     int num;
@@ -39,6 +44,7 @@ bool intCheck(string str)
     return isNum;
 }
 
+// функция, проводящая все проверки вводимых данных и возвращающая "ок", либо текст ошибки
 string? checker(string str)
 {
     if (nullCheck(firstLine) == true)
@@ -74,21 +80,27 @@ string? checker(string str)
     return answerBig;
 }
 
+
 if (checker(firstLine) == "ok")
 {
     int number = int.Parse(firstLine);
     int count = 0;
-
-    while (number>0)
+    
+// запускаем цикл для подсчета количества символов в числе
+    while (number > 0)
     {
          var digit = number % 10;
          number /= 10;
          count++;
     }
 
+// объявляем массив для хранения цифр числа с посчитанной выше размерностью
     int[] arrNumber = new int[count];
 
     number = int.Parse(firstLine);
+    
+// запускаем цикл для заполнения массива цифрами введенного числа
+    
     while(number > 0)
     {
          arrNumber[count-1] = number % 10;
@@ -96,9 +108,10 @@ if (checker(firstLine) == "ok")
          count--;
     }
 
-    Console.WriteLine(arrNumber[2]);
+    
+    Console.WriteLine(arrNumber[2]); // выводим третий элемент массива (третью цифру)
 }
 else
 {
-    Console.WriteLine(answerBig);
+    Console.WriteLine(answerBig); // выводим текст ошибки
 }

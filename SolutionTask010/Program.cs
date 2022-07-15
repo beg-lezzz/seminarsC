@@ -1,8 +1,10 @@
-﻿Console.Write("Введите трёхзначное число: ");
+﻿Console.Clear();
+Console.Write("Введите трёхзначное число: ");
 string? firstLine = Console.ReadLine(); 
 bool answer = true;
 string? answerCheck;
 
+// функция для проверки вводимых пользователем данных на пустоту и null
 bool nullCheck(string str)
 {
     if (str == null || str == "")
@@ -11,7 +13,8 @@ bool nullCheck(string str)
     }
     return answer;
 }
-    
+
+// функция для проверки вводимых пользователем данных на количество введенных символов
 bool threeDigitCheck(string str)
 {
     if (firstLine.Length != 3)
@@ -20,18 +23,20 @@ bool threeDigitCheck(string str)
     }
     return answer;
 }
-    
+
+// функция для проверки вводимых пользователем данных на наличие нуля в начале строки
 bool zeroCheck(string str)
 {
     char[] array = firstLine.ToString().ToCharArray();
     int firstDig = ((int)array[0]) - 48;
-    if (firstDig == 0 && array.Length > 2)
+    if (firstDig == 0 && array.Length > 1)
     {
         answer = false;
     }
     return answer;
 }
 
+// функция для проверки вводимых пользователем данных на целое число
 bool intCheck(string str)
 {
     int num;
@@ -39,6 +44,7 @@ bool intCheck(string str)
     return isNum;
 }
 
+// функция, проводящая все проверки вводимых данных и возвращающая "ок", либо текст ошибки
 string? checker(string str)
 {
     if (nullCheck(firstLine) == true)
@@ -74,12 +80,13 @@ string? checker(string str)
     return answerCheck;
 }
 
+//определение второй цифры введенного числа
 if (checker(firstLine) == "ok")
 { 
     int secondDigit = int.Parse(firstLine)%100/10; 
-    Console.WriteLine(secondDigit);
+    Console.WriteLine(secondDigit); // вывод второй цифры
 }
 else
 {
-    Console.WriteLine(answerCheck);
+    Console.WriteLine(answerCheck); // вывод текста ошибки
 }
