@@ -106,16 +106,15 @@ string? checker(string str)
 Dictionary<string,string> dicFill()
 {
     var dic = new Dictionary<string, string>();
-    string? a = "";
-    string? b = "";
+    string? palindrom = string.Empty;
     for (int i = 0; i <= 9; i++)
     {
         for (int j = 0; j <= 9; j++)
         {
             for (int k = 1; k <= 9; k++)
             {
-                a = k.ToString() + j.ToString() + i.ToString() + j.ToString() + k.ToString();
-                dic.Add(a, a);
+                palindrom = k.ToString() + j.ToString() + i.ToString() + j.ToString() + k.ToString();
+                dic.Add(palindrom, palindrom);
             }
         }
     }
