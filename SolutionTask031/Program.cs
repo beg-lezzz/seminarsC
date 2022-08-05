@@ -31,11 +31,11 @@ void CalculateTask(int[] outArray)
     {
         if (outArray[i] > 0)
         {
-            positSum = positSum + outArray[i];
+            positSum += outArray[i];
         }
         else
         {
-            negatSum = negatSum + outArray[i];
+            negatSum += outArray[i];
         }
 
         i++;
