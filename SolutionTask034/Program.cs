@@ -17,9 +17,32 @@ int[] FillArray(int arrLength)
     return inputArray;
 }
 
+int EvenCount(int[] inputArray)
+{
+    int evenCount = 0;
+
+    for (int i = 0; i < inputArray.Length; i++)
+    {
+        if (inputArray[i]%2 == 0)
+        {
+            evenCount++;
+        }
+    }
+
+    return evenCount;
+}
+
 if (Int32.TryParse(input, out var num) == true)
 {
-    PrintArray(Bubble(FillArray(num)));
+    int[] inputArray = new int[num];
+    inputArray = FillArray(num);
+    Console.WriteLine();
+    Console.WriteLine("Исходный массив: ");
+    PrintArray(inputArray);
+    Console.WriteLine();
+    Console.WriteLine($"Количество четных элементов в массиве: {EvenCount(inputArray)}");
+    Console.WriteLine();
+    PrintArray(Bubble(inputArray));
 }
 else
 {
@@ -38,10 +61,6 @@ void PrintArray(int[] inputArray)
 // сортировка методом пузырька с печатью первоначального массива
 int[] Bubble(int[] inputArray)
 {
-    Console.WriteLine();
-    Console.WriteLine("Исходный массив: ");
-    PrintArray(inputArray);
-    Console.WriteLine();
     Console.WriteLine("Сортировка методом пузырька: ");
     int[] outputArray = new int[inputArray.Length];
     int tmp;                                                        // задаем буферную переменную
