@@ -1,12 +1,17 @@
-﻿Console.WriteLine("Калькулятор. Доступные операции: ");
-Console.WriteLine("Сумма: " + " + ");
-Console.WriteLine("Разность: " + " - ");
-Console.WriteLine("Произведение: " + " * ");
-Console.WriteLine("Частное: " + " / ");
-Console.WriteLine("Степень: " + " ^ ");
-Console.Write("Введите два числа и операцию. Например, 5 + 2: ");
+﻿// метод для запроса данных у пользователя
+string UserData()
+{
+    Console.WriteLine("Калькулятор. Доступные операции: ");
+    Console.WriteLine("Сумма: " + " + ");
+    Console.WriteLine("Разность: " + " - ");
+    Console.WriteLine("Произведение: " + " * ");
+    Console.WriteLine("Частное: " + " / ");
+    Console.WriteLine("Степень: " + " ^ ");
+    Console.Write("Введите два числа и операцию. Например, 5 + 2: ");
+    string? strForCalc = Console.ReadLine().Replace(" ", String.Empty); // считываем строку из консоли и удаляем лишние пробелы
 
-string? strForCalc = Console.ReadLine().Replace(" ", String.Empty); // считываем строку из консоли и удаляем лишние пробелы
+    return strForCalc;
+}
 
 // метод определения операции над числами и индекса оператора
 string[] OperationFind(string strForCalc)
@@ -34,20 +39,22 @@ string[] OperationFind(string strForCalc)
 //метод определения действия по оператору
 string OperationCase(string operation, int firstNum, int secondNum)
 {
-    int result = 0;
+    string result = string.Empty;
     switch (operation)
     {
-        case "+": result = firstNum + secondNum;
+        case "+": result = (firstNum + secondNum).ToString();
             break;
-        case "-": result = firstNum - secondNum;
+        case "-": result = (firstNum - secondNum).ToString();
             break;
-        case "*": result = firstNum * secondNum;
+        case "*": result = (firstNum * secondNum).ToString();
             break;
-        case "/": result = firstNum / secondNum;
+        case "/": result = (firstNum / secondNum).ToString();
             break;
-        case ":": result = firstNum / secondNum;
+        case ":": result = (firstNum / secondNum).ToString();
             break;
-        case "^": result = (int)(Math.Pow(firstNum,secondNum));
+        case "^": result = (Math.Pow(firstNum,secondNum)).ToString();
+            break;
+        default: result = "Невозможно вычислить. Выберите операцию из приведенных выше.";
             break;
     }
 
@@ -70,7 +77,7 @@ bool ArrayCheck(string[] operationArray)
 }
 
 // метод для вычисления результата операции с введенными числами
-string Calculate(string[] operationArray)
+string Calculate(string[] operationArray, string strForCalc)
 {
     string resultOper = String.Empty;
     if (ArrayCheck(operationArray) == true)
@@ -103,4 +110,7 @@ string Calculate(string[] operationArray)
     return resultOper;
     }
 
-Console.WriteLine(Calculate(OperationFind(strForCalc)));
+// Console.WriteLine(Calculate(OperationFind(OperationFind(),UserData())));
+
+string? strForCalc = UserData();
+Console.WriteLine(Calculate(OperationFind(strForCalc), strForCalc));
