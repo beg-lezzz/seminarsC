@@ -1,8 +1,4 @@
-﻿Console.Clear();
-Console.WriteLine("Введите количество элементов массива: ");
-string input = Console.ReadLine();
-int arrLength = 0;
-
+﻿// метод для заполнения массива
 int[] FillArray(int arrLength)
 {
     int[] inputArray = new int[arrLength];
@@ -17,6 +13,7 @@ int[] FillArray(int arrLength)
     return inputArray;
 }
 
+// метод подсчета количества четных элементов
 int EvenCount(int[] inputArray)
 {
     int evenCount = 0;
@@ -32,23 +29,7 @@ int EvenCount(int[] inputArray)
     return evenCount;
 }
 
-if (Int32.TryParse(input, out var num) == true)
-{
-    int[] inputArray = new int[num];
-    inputArray = FillArray(num);
-    Console.WriteLine();
-    Console.WriteLine("Исходный массив: ");
-    PrintArray(inputArray);
-    Console.WriteLine();
-    Console.WriteLine($"Количество четных элементов в массиве: {EvenCount(inputArray)}");
-    Console.WriteLine();
-    PrintArray(Bubble(inputArray));
-}
-else
-{
-    Console.WriteLine("Некорректный ввод.");
-}
-
+// метод печати массива
 void PrintArray(int[] inputArray)
 {
     for (int i = 0; i < inputArray.Length - 1; i++)
@@ -82,4 +63,24 @@ int[] Bubble(int[] inputArray)
         k++;
     }
     return inputArray;
+}
+
+Console.Clear();
+Console.WriteLine("Введите количество элементов массива: ");
+string input = Console.ReadLine();
+if (Int32.TryParse(input, out var arrLength) == true)
+{
+    int[] inputArray = new int[arrLength];
+    inputArray = FillArray(arrLength);
+    Console.WriteLine();
+    Console.WriteLine("Исходный массив: ");
+    PrintArray(inputArray);
+    Console.WriteLine();
+    Console.WriteLine($"Количество четных элементов в массиве: {EvenCount(inputArray)}");
+    Console.WriteLine();
+    PrintArray(Bubble(inputArray));
+}
+else
+{
+    Console.WriteLine("Некорректный ввод.");
 }
