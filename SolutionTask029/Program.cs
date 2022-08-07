@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Headers;
-
-// метод для заполнения массива
+﻿// метод для заполнения массива
 int[] FillArray(int[] arrData)
 {
     int arrayLength = arrData[0];
