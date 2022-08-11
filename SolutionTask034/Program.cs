@@ -72,7 +72,7 @@ if (Int32.TryParse(input, out var arrLength) == true)
     int[] inputArray = new int[arrLength];
     inputArray = FillArray(arrLength);
     Console.WriteLine();
-    //Console.WriteLine("Исходный массив: ");
+    Console.WriteLine("Исходный массив: ");
     PrintArray(inputArray);
     Console.WriteLine();
     Console.WriteLine($"Количество четных элементов в массиве:" +
