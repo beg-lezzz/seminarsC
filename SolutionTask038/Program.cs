@@ -31,7 +31,7 @@ void SwapArray(int[] inputArray, int i, int j)
     inputArray[j] = tmp;
 }
 
-// метод для сортировки массива методом вставки
+// метод для сортировки массива вставкой
 int[] SortInputMethod(int[] inputArray)
 {
     int bufElement;
@@ -52,10 +52,50 @@ int[] SortInputMethod(int[] inputArray)
     return inputArray;
 }
 
-//метод для сортировки массива методом подсчета
-void SortCountMethod()
+//метод для сортировки массива методом подсчетом
+int[] SortCountMethod(int[] inputArray)
 {
+    int length = Math.Abs(inputArray.Max()) + Math.Abs(inputArray.Min()) + 1;
+    int[] sortedArray = new int[inputArray.Length];
+    int[] indexArray = new int[length];
     
+    int countElementsOfIndexArray = 0;
+    for (int i = inputArray.Min(); i <= inputArray.Max(); i++)
+    {
+        indexArray[countElementsOfIndexArray] = i;
+        countElementsOfIndexArray++;
+    }
+    
+    int countElementsOfSortedArray = 0;
+    for (int i = 0; i < indexArray.Length; i++)
+    {
+        int tmp = 0;
+        int countMatchedElements = 0;
+        for (int j = 0; j < inputArray.Length; j++)
+        {
+            if (indexArray[i] == inputArray[j])
+            {
+                tmp = inputArray[j];
+                countMatchedElements++;
+            }
+        }
+
+        for (int j = 0; j < countMatchedElements; j++)
+        {
+            sortedArray[countElementsOfSortedArray] = tmp;
+            countElementsOfSortedArray++;
+        }
+    }
+
+    return sortedArray;
+}
+
+// метод нахождения разницы первого и последнего элемента
+int NumbersDif(int[] inputArray)
+{
+    int dif = inputArray[0] - inputArray[inputArray.Length - 1];
+    
+    return dif;
 }
 
 Console.Clear();
@@ -65,7 +105,16 @@ if (Int32.TryParse(input, out var arrLength) == true)
 {
     int[] inputArray = FillArray(arrLength);
     PrintArray(inputArray);
+    Console.WriteLine();
+    Console.WriteLine("Отсортированный массив методом вставки: ");
     PrintArray(SortInputMethod(inputArray));
+    Console.WriteLine($"Разница между первым и последним элементом = " +
+                      $"{NumbersDif(SortInputMethod(inputArray))}");
+    Console.WriteLine();
+    Console.WriteLine("Отсортированный массив методом подсчета: ");
+    PrintArray(SortCountMethod(inputArray));
+    Console.WriteLine($"Разница между первым и последним элементом = " +
+                      $"{NumbersDif(SortCountMethod(inputArray))}");
 }
 else
 {
