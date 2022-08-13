@@ -69,20 +69,20 @@ int[] SortCountMethod(int[] inputArray)
     int countElementsOfSortedArray = 0;
     for (int i = 0; i < indexArray.Length; i++)
     {
-        int tmp = 0;
+        int bufElement = 0;
         int countMatchedElements = 0;
         for (int j = 0; j < inputArray.Length; j++)
         {
             if (indexArray[i] == inputArray[j])
             {
-                tmp = inputArray[j];
+                bufElement = inputArray[j];
                 countMatchedElements++;
             }
         }
 
         for (int j = 0; j < countMatchedElements; j++)
         {
-            sortedArray[countElementsOfSortedArray] = tmp;
+            sortedArray[countElementsOfSortedArray] = bufElement;
             countElementsOfSortedArray++;
         }
     }
