@@ -65,9 +65,8 @@ double CalcSquare(int[,] factors)
                                  Math.Pow((coordY3 - coordY1), 2));
         double halfPerimeter = (sideA + sideB + sideC) / 2;
         square = Math.Sqrt(halfPerimeter * (halfPerimeter - sideA) * 
-                           (halfPerimeter - sideB) * (halfPerimeter - sideC));
-    
-        Console.WriteLine(sideA + " " + sideB + " " + sideC);
+                           (halfPerimeter - sideB) *
+                           (halfPerimeter - sideC));
     }
     
     return square;
