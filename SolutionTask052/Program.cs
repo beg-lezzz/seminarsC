@@ -34,8 +34,8 @@ void PrintColorDiagonalesRightToLeft(int[,] inputArray)
 {
     System.Random numberSyntezator = new System.Random();
     int count = 0;
-    int sumRight = 0;
-    int sumUp = 0;
+    double sumRight = 0;
+    double sumUp = 0;
     int countElems = 0;
     ConsoleColor[] col = new ConsoleColor[]
     {
@@ -51,9 +51,6 @@ void PrintColorDiagonalesRightToLeft(int[,] inputArray)
     {
         colorDigs[i]  = col[numberSyntezator.Next(0, 16)];
     }
-    
-    // разделитель
-    //Console.Write(" {0, " + -3 + "} | \t", " ");
 
     // считаем ср. арифметическое по диагоналям, начинающимся в первой строке исходного массива и выводим первой строкой
     for (int j = 0; j < inputArray.GetLength(1); j++)
@@ -61,14 +58,13 @@ void PrintColorDiagonalesRightToLeft(int[,] inputArray)
         for (int i = 0; i < inputArray.GetLongLength(0); i++)
         {
             if ((j - i) >=0)
-                //< inputArray.GetLength(1))
             {
                 sumUp += inputArray[i,j-i];
                 countElems++;
             }
         }
         Console.ForegroundColor = colorDigs[j];
-        Console.Write(sumUp/countElems + "\t");
+        Console.Write(Math.Round(sumUp/countElems, 1) + "\t");
         Console.ResetColor();
         sumUp = 0;
         countElems = 0;
@@ -104,7 +100,7 @@ void PrintColorDiagonalesRightToLeft(int[,] inputArray)
         }
         
         Console.ForegroundColor = colorDigs[i + inputArray.GetLength(1)-1];
-        Console.Write("| {0, " + -3 + "}", sumRight/countElems);
+        Console.Write(" | {0, " + -4 + "}", Math.Round(sumRight/countElems, 1));
         
         Console.WriteLine();
         countElems = 0;
@@ -129,8 +125,8 @@ void PrintColorDiagonalesLeftToRight(int[,] inputArray)
         ConsoleColor.DarkYellow
     };
     int count = 0;
-    int sumLeft = 0;
-    int sumUp = 0;
+    double sumLeft = 0;
+    double sumUp = 0;
     int countElems = 0;
     // создаем и заполняем через рандомайзер массив цветов по длине == кол-во строк + кол-во столбцов исходного массива
     ConsoleColor[] colorDigs = new ConsoleColor[inputArray.GetLength(0) + inputArray.GetLength(1)];
@@ -140,7 +136,7 @@ void PrintColorDiagonalesLeftToRight(int[,] inputArray)
     }
 
     // разделитель
-    Console.Write(" {0, " + -3 + "} | \t", " ");
+    Console.Write(" {0, " + -4 + "} | ", " ");
 
     // считаем ср. арифметическое по диагоналям, начинающимся в первой строке исходного массива и выводим первой строкой
     for (int j = 0; j < inputArray.GetLength(1); j++)
@@ -154,7 +150,7 @@ void PrintColorDiagonalesLeftToRight(int[,] inputArray)
             }
         }
         Console.ForegroundColor = colorDigs[j + inputArray.GetLength(0)];
-        Console.Write(sumUp/countElems + "\t");
+        Console.Write(Math.Round(sumUp/countElems, 1) + "\t");
         Console.ResetColor();
         sumUp = 0;
         countElems = 0;
@@ -162,7 +158,6 @@ void PrintColorDiagonalesLeftToRight(int[,] inputArray)
     
     // разделители
     Console.WriteLine();
-    //Console.Write("\t");
     for (int i = 0; i < inputArray.GetLength(1)*8; i++)
     {
         Console.Write("-");
@@ -183,7 +178,7 @@ void PrintColorDiagonalesLeftToRight(int[,] inputArray)
         }
         
         Console.ForegroundColor = colorDigs[inputArray.GetLength(0)-count];
-        Console.Write(" {0, " + -3 + "} | \t", sumLeft/countElems);
+        Console.Write(" {0, " + -4 + "} | ", Math.Round(sumLeft/countElems,1));
         
         for (int j = 0; j < inputArray.GetLength(1); j++)
         {
