@@ -1,16 +1,6 @@
 ﻿Console.Clear();
 int numberN = ReadData("Задайте число M: ");
 int numberM = ReadData("Задайте число N: ");
-int sum = 0;
-
-// if (numberM < numberN)
-// {
-//     Console.WriteLine(PowNumber(numberM, numberN));
-// }
-// else
-// {
-//     Console.WriteLine(PowNumber(numberN, numberM));
-// }
 
 Console.WriteLine(PowNumber(numberM, numberN));
 

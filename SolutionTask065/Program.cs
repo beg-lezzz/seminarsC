@@ -20,10 +20,8 @@ int ReadData(string line)
 
 int NaturalNumberPrinter(int m, int n)
 {
-    if (m - 1 == n) return sum;
     Console.Write(m + " ");
-    NaturalNumberPrinter(m + 1, n);
-    sum += numberM;
-
-    return sum;
+    if (m == n) return m;
+    return m + NaturalNumberPrinter(++m, n);
+    //NaturalNumberPrinter(m + 1, n);
 }
