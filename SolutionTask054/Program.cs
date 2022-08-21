@@ -51,67 +51,63 @@ void PrintTwoDimArray(int[,] inputArray)
     }
 }
 
-// запрос данных от пользователя с проверкой на корректность
-string InputData()
+// метод для создания одномерного массива из указанной строки двумерного массива
+int[] CutStringFromArray(int[,] inputArray, int numString)
 {
-    string numRowsAndCols = String.Empty;
-    Console.WriteLine("Введите кол-во строк: ");
-    string inputRow = Console.ReadLine();
-    if (Int32.TryParse(inputRow, out var arrCountRow) == true && arrCountRow > 0)                     //проверяем, что введено положительное число для строк
+    int[] cutArray = new int[inputArray.GetLength(1)];
+    for (int i = 0; i < inputArray.GetLength(1); i++)
     {
-        Console.WriteLine("Введите кол-во столбцов: ");
-        string inputCol = Console.ReadLine();
-        if (Int32.TryParse(inputCol, out var arrCountCol) == true && arrCountCol > 0)                 //проверяем, что введено положительное число для столбцов
-        {
-            numRowsAndCols = $"{arrCountRow},{arrCountCol}";
-        }
-        else
-        {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("Некорректный ввод.");
-            Console.ResetColor();
-        }
-    }
-    else
-    {
-        Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.WriteLine("Некорректный ввод.");
-        Console.ResetColor();
+        cutArray[i] = inputArray[numString,i];
     }
 
-    return numRowsAndCols;
+    return cutArray;
+}
+
+// метод для перезаписи указанной строки двумерного массива из одномерного массива
+int[,] PasteStringToArray(int[,] inputArray, int[] cutArray, int numString)
+{
+    for (int i = 0; i < inputArray.GetLength(1); i++)
+    {
+        inputArray[numString,i] = cutArray[i];
+    }
+
+    return inputArray;
 }
 
 // метод построчной сортировки двумерного массива
 int[,] SortTwoDimArray(int[,] inputArray)
 {
-    int[] bufArray = new int[inputArray.GetLength(0)];
-
     for (int i = 0; i < inputArray.GetLength(0); i++)
     {
-        for (int j = 0; j < inputArray.GetLength(1); j++)
-        {
-            bufArray[j] = inputArray[i,j];
-        }
-
-        bufArray = BubbleSortArray(bufArray);
-
-        for (int j = 0; j < inputArray.GetLength(1); j++)
-        {
-            inputArray[i,j] = bufArray[j];
-        }
+        PasteStringToArray(inputArray, BubbleSortArray(CutStringFromArray(inputArray, i)),i);
     }
     
     return inputArray;
 }
 
+// метод для запроса данных у пользователя
+int UserData(string inputString)
+{
+    Console.Write(inputString + ": ");
+    string numString = Console.ReadLine();
+    if (Int32.TryParse(numString, out int num) == true && num > 0)                                       //проверяем, что введено положительное число для строк
+    {
+        return num;
+    }
+    else
+    {
+        Console.WriteLine("Ошибка ввода");
+        System.Environment.Exit(1);
+        return 0;
+    }
+}
+
 Console.Clear();
-string arrDimensions = InputData();
-int.TryParse(arrDimensions.Split(",")[0], out int arrCountRow);
-int.TryParse(arrDimensions.Split(",")[1], out int arrCountCol);
+int arrCountRow = UserData("Введите число строк");
+int arrCountCol = UserData("Введите число столбцов");
 
-int[,] rndArray = FillTwoDimArray(arrCountRow, arrCountCol);
+int[,] bufArray = FillTwoDimArray(arrCountRow, arrCountCol);
 
-PrintTwoDimArray(rndArray);
+PrintTwoDimArray(bufArray);
 Console.WriteLine();
-PrintTwoDimArray(SortTwoDimArray(rndArray));
+PrintTwoDimArray(SortTwoDimArray(bufArray));
