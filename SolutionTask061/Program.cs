@@ -37,4 +37,3 @@ for (i = 0; i < n; i++)
     // после каждой строки с числами отступаем две пустые строчки
     Console.WriteLine();
 }
-//Console.ReadLine();
