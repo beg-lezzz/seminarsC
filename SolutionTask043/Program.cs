@@ -43,27 +43,30 @@ double CalcSquare(int[,] factors)
     double coordX2; double coordY2;
     double coordX3; double coordY3;
 
-    if (factors[0, 0] - factors[1, 0] == 0 || factors[1,0] - factors[2,0] == 0 || factors[0,0] - factors[2,0] == 0)
+    if (factors[0, 0] - factors[1, 0] == 0 || factors[1,0] - factors[2,0] == 0 || factors[0,0] - factors[2,0] == 0)         // проверяем на исключения, чтобы расстояние между точками не равнялось нулю
     {
         Console.WriteLine("При таких коэффициентах возникает деление на ноль. Необходимо скорректировать.");
     }
     else
     {
-        coordX1 = (factors[1,1] - factors[0,1]) / (factors[0,0] - factors[1,0]); 
+        // решаем систему уроавнений, чтобы найти координаты Х и У
+        coordX1 = (factors[1,1] - factors[0,1]) / (factors[0,0] - factors[1,0]);
         coordY1 = factors[0,0] * coordX1 + factors[0,1]; 
         coordX2 = (factors[2,1] - factors[1,1]) / (factors[1,0] - factors[2,0]);
         coordY2 = factors[1,0] * coordX2 + factors[1,1]; 
         coordX3 = (factors[2,1] - factors[0,1]) / (factors[0,0] - factors[2,0]);
         coordY3 = factors[2,0] * coordX3 + factors[2,1];
 
-
-        double sideA = Math.Sqrt(Math.Pow((coordX2 - coordX1), 2) + 
+        // находим расстояния между точками (по формуле)
+        double sideA = Math.Sqrt(Math.Pow((coordX2 - coordX1), 2) +                                                         //
                                  Math.Pow((coordY2 - coordY1), 2));
         double sideB = Math.Sqrt(Math.Pow((coordX3 - coordX2), 2) + 
                                  Math.Pow((coordY3 - coordY2), 2));
         double sideC = Math.Sqrt(Math.Pow((coordX3 - coordX1), 2) + 
                                  Math.Pow((coordY3 - coordY1), 2));
+        // вычисляем половину периметра для формулы площади треугольника
         double halfPerimeter = (sideA + sideB + sideC) / 2;
+        // вычисляем площадь треугольника по формуле
         square = Math.Sqrt(halfPerimeter * (halfPerimeter - sideA) * 
                            (halfPerimeter - sideB) *
                            (halfPerimeter - sideC));
